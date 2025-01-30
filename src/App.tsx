@@ -5,7 +5,7 @@ import { useSelector } from "react-redux";
 import { RootState } from "./store/store.ts";
 
 function App() {
-  const { isLogin } = useSelector((state: RootState) => state.sign);
+  const isLogin = useSelector((state: RootState) => state.sign.isLogin);
 
   return (
     <Routes>
@@ -37,7 +37,7 @@ function App() {
               }
             />
           ))}
-          <Route path="*" element={<Navigate to="/" />} />
+          <Route path="*" element={<Navigate to="/chats" />} />
         </>
       )}
     </Routes>

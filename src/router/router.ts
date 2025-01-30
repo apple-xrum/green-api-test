@@ -9,7 +9,7 @@ export const PRIVATE_PAGES = [
 
 export const PUBLIC_PAGES = [
   {
-    path: "/",
+    path: "/chats/*",
     component: ChatPage,
   },
 ];

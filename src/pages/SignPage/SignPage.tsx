@@ -51,7 +51,7 @@ const SignPage = () => {
   const onSubmit = (data: any) => {
     console.log(data);
     dispatch(login(data));
-    navigate("/");
+    navigate("/chats");
   };
 
   return (

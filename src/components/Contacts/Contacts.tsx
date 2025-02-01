@@ -31,7 +31,7 @@ const Contacts = () => {
   return (
     <>
       <AddContact handleClose={handleClose} open={open} />
-      <Stack borderRight="2px solid #4cae4f" width="250px" height="100vh">
+      <Stack borderRight="2px solid #1976d2" width="250px" height="100vh">
         <List
           subheader={
             <ListSubheader
@@ -48,7 +48,7 @@ const Contacts = () => {
                 onClick={handleClickOpen}
                 fontSize="large"
                 sx={{
-                  fill: "#4cae4f",
+                  fill: "#1976d2",
                   transition: "opacity 100ms ease-in-out",
                   cursor: "pointer",
                   ":hover": {

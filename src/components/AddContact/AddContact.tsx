@@ -13,7 +13,7 @@ type FormData = {
 const schema = yup.object().shape({
   phone: yup
     .string()
-    .matches(/^(\+\d|\d)\d{10}$/, "Некорректный номер телефона")
+    .matches(/^\d{11}$/, "Некорректный номер телефона")
     .required(),
 });
 
@@ -22,6 +22,7 @@ const AddContact = ({ handleClose, open }: { handleClose: () => void; open: bool
     control,
     handleSubmit,
     formState: { errors },
+    reset,
   } = useForm<FormData>({
     resolver: yupResolver(schema),
   });
@@ -29,15 +30,21 @@ const AddContact = ({ handleClose, open }: { handleClose: () => void; open: bool
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const onSubmit = (data: any) => {
-    let { phone } = data;
-    if (phone[0] == "+") {
-      phone = phone.substring(1);
-    } else {
-      phone = `${Number(phone[0]) - 1}${phone.substring(1)}`;
-    }
+  const onSubmit = (data: FormData) => {
+    const { phone } = data;
     dispatch(addContact({ phone }));
+    handleClose();
+    reset();
     navigate(`/chats/${phone}`);
+  };
+
+  const handlePhoneChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const value = event.target.value;
+    if (/^\d*$/.test(value)) {
+      event.target.value = value;
+    } else {
+      event.target.value = value.replace(/\D/g, "");
+    }
   };
 
   return (
@@ -57,6 +64,13 @@ const AddContact = ({ handleClose, open }: { handleClose: () => void; open: bool
                 fullWidth
                 error={!!errors.phone}
                 helperText={errors.phone ? errors.phone?.message : ""}
+                inputProps={{
+                  maxLength: 11,
+                }}
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                  handlePhoneChange(e);
+                  field.onChange(e);
+                }}
               />
             )}
           />

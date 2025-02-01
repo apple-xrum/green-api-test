@@ -1,6 +1,14 @@
 import { useForm, Controller } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { TextField, Button, Box, Stack, Typography, Link } from "@mui/material";
+import {
+  TextField,
+  Button,
+  Box,
+  Stack,
+  Typography,
+  Link,
+  InputBaseComponentProps,
+} from "@mui/material";
 import * as yup from "yup";
 import { useDispatch } from "react-redux";
 import { login } from "../../store/sign/slice/sign.slice.ts";
@@ -14,7 +22,7 @@ type FormData = {
 type Field = {
   name: keyof FormData;
   label: string;
-  inputProps?: any;
+  inputProps?: InputBaseComponentProps;
 };
 
 const fields: Field[] = [
@@ -48,8 +56,7 @@ const SignPage = () => {
     resolver: yupResolver(schema),
   });
 
-  const onSubmit = (data: any) => {
-    console.log(data);
+  const onSubmit = (data: FormData) => {
     dispatch(login(data));
     navigate("/chats");
   };
@@ -77,7 +84,7 @@ const SignPage = () => {
                   fullWidth
                   error={!!errors[fieldConfig.name]}
                   helperText={errors[fieldConfig.name] ? errors[fieldConfig.name]?.message : ""}
-                  inputProps={fieldConfig.inputProps || null}
+                  inputProps={fieldConfig.inputProps}
                 />
               )}
             />

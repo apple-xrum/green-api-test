@@ -46,6 +46,7 @@ const Contacts = () => {
           zIndex: 2,
           left: "15px",
           bottom: "15px",
+          bgcolor: "#3B9702",
         }}
         onClick={handleLogout}
       >
@@ -61,7 +62,7 @@ const Contacts = () => {
               backgroundColor: "transparent",
             },
             "::-webkit-scrollbar-thumb": {
-              backgroundColor: "#1976d2",
+              backgroundColor: "#3B9702",
               borderRadius: "4px",
             },
             overflowY: "auto",
@@ -81,7 +82,7 @@ const Contacts = () => {
                 onClick={handleClickOpen}
                 fontSize="large"
                 sx={{
-                  fill: "#1976d2",
+                  fill: "#3B9702",
                   transition: "opacity 100ms ease-in-out",
                   cursor: "pointer",
                   ":hover": {

@@ -204,7 +204,7 @@ const Chat = () => {
             backgroundColor: "transparent",
           },
           "::-webkit-scrollbar-thumb": {
-            backgroundColor: "#1976d2",
+            backgroundColor: "#3B9702",
             borderRadius: "6px",
           },
           overflowY: "auto",
@@ -242,6 +242,11 @@ const Chat = () => {
               variant="outlined"
               fullWidth
               error={!!errors.message}
+              sx={{
+                ".Mui-focused .MuiOutlinedInput-notchedOutline": {
+                  borderColor: "#3B9702 !important",
+                },
+              }}
             />
           )}
         />
@@ -251,6 +256,9 @@ const Chat = () => {
           variant="contained"
           disabled={sendingMessage}
           loading={sendingMessage}
+          sx={{
+            bgcolor: "#3B9702",
+          }}
         >
           Отправить
         </Button>

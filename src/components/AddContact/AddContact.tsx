@@ -67,6 +67,12 @@ const AddContact = ({ handleClose, open }: { handleClose: () => void; open: bool
                 inputProps={{
                   maxLength: 11,
                 }}
+                sx={{
+                  ".MuiFormLabel-root.Mui-focused ": { color: "#3B9702 !important" },
+                  ".Mui-focused .MuiOutlinedInput-notchedOutline": {
+                    borderColor: "#3B9702 !important",
+                  },
+                }}
                 onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
                   handlePhoneChange(e);
                   field.onChange(e);
@@ -75,7 +81,9 @@ const AddContact = ({ handleClose, open }: { handleClose: () => void; open: bool
             )}
           />
         </Box>
-        <Button type="submit">Добавить</Button>
+        <Button type="submit" variant="contained" sx={{ bgcolor: "#3B9702" }}>
+          Добавить
+        </Button>
       </Stack>
     </Dialog>
   );

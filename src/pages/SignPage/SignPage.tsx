@@ -66,7 +66,7 @@ const SignPage = () => {
       <Stack maxWidth="320px" component="form" onSubmit={handleSubmit(onSubmit)}>
         <Typography variant="h4" component="h1" textAlign="center" mb={2}>
           Для использования приложения введите данные с{" "}
-          <Link href="https://green-api.com" target="_blank">
+          <Link color="#3B9702" href="https://green-api.com" target="_blank">
             GREEN-API
           </Link>
         </Typography>
@@ -81,6 +81,12 @@ const SignPage = () => {
                   {...field}
                   label={fieldConfig.label}
                   variant="outlined"
+                  sx={{
+                    ".MuiFormLabel-root.Mui-focused ": { color: "#3B9702 !important" },
+                    ".Mui-focused .MuiOutlinedInput-notchedOutline": {
+                      borderColor: "#3B9702 !important",
+                    },
+                  }}
                   fullWidth
                   error={!!errors[fieldConfig.name]}
                   helperText={errors[fieldConfig.name] ? errors[fieldConfig.name]?.message : ""}
@@ -95,6 +101,7 @@ const SignPage = () => {
           variant="contained"
           sx={{
             width: "100%",
+            bgcolor: "#3B9702",
           }}
         >
           Установить

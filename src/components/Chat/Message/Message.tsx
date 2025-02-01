@@ -27,7 +27,7 @@ const Message: React.FC<MessageProps> = ({ type, senderName, textMessage, timest
         ml: type === "outgoing" ? "auto" : null,
         p: 1,
         borderRadius: 2,
-        bgcolor: type === "outgoing" ? "#1976d2" : "#464646",
+        bgcolor: type === "outgoing" ? "#3B9702" : "#464646",
       }}
     >
       <Typography variant="caption" color="#fff">

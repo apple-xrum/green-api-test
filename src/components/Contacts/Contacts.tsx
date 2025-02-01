@@ -52,7 +52,7 @@ const Contacts = () => {
         Выйти
       </Button>
       <AddContact handleClose={handleClose} open={open} />
-      <Stack width="250px" height="100%">
+      <Stack borderRight="3px solid #e9e9e9" width="250px" height="100%">
         <List
           sx={{
             height: "calc(100% - 60px)",

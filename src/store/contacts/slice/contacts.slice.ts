@@ -3,8 +3,8 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 const initialState: {
   contacts: Array<string>;
 } = {
-  contacts: sessionStorage.getItem("contacts")
-    ? JSON.parse(<string>sessionStorage.getItem("contacts"))
+  contacts: localStorage.getItem("contacts")
+    ? JSON.parse(<string>localStorage.getItem("contacts"))
     : [],
 };
 
@@ -16,12 +16,16 @@ const contactSlice = createSlice({
       const { phone } = action.payload;
       if (state.contacts.findIndex((contact) => contact === phone) === -1) {
         state.contacts.push(phone);
-        sessionStorage.setItem("contacts", JSON.stringify(state.contacts));
+        localStorage.setItem("contacts", JSON.stringify(state.contacts));
       }
+    },
+    clearContacts: (state) => {
+      state.contacts = [];
+      localStorage.removeItem("contacts");
     },
   },
 });
 
-export const { addContact } = contactSlice.actions;
+export const { addContact, clearContacts } = contactSlice.actions;
 
 export default contactSlice;

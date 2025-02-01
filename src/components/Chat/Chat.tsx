@@ -99,11 +99,14 @@ const Chat = () => {
       if (res.data) {
         const resMessage = res.data as MessageType[];
         setMessages(resMessage);
+      } else {
+        setMessages([]);
       }
     });
   }, [phone]);
 
   useEffect(() => {
+    if (phone === "") return;
     let isFetching = false;
     let isFirst = true;
 
@@ -159,7 +162,7 @@ const Chat = () => {
           type: "outgoing",
           idMessage: idMessage,
           textMessage: data.message,
-          timestamp: Date.now(),
+          timestamp: Date.now() / 1000,
           chatId: `${phone}@c.us`,
         };
         setMessages([message, ...messages]);
@@ -179,7 +182,7 @@ const Chat = () => {
   }
 
   return (
-    <Stack spacing={2} width="100%" height="100vh" justifyContent="space-between">
+    <Stack width="100%" height="100vh" justifyContent="space-between" zIndex={1}>
       <Paper
         elevation={3}
         sx={{
@@ -196,6 +199,14 @@ const Chat = () => {
         px={3}
         rowGap={3}
         sx={{
+          "::-webkit-scrollbar": {
+            width: "12px",
+            backgroundColor: "transparent",
+          },
+          "::-webkit-scrollbar-thumb": {
+            backgroundColor: "#1976d2",
+            borderRadius: "6px",
+          },
           overflowY: "auto",
         }}
       >

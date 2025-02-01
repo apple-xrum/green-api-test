@@ -1,4 +1,5 @@
 import {
+  Button,
   List,
   ListItem,
   ListItemButton,
@@ -11,12 +12,15 @@ import AddCircleIcon from "@mui/icons-material/AddCircle";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { AddContact } from "../index.ts";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../store/store.ts";
+import { logout } from "../../store/sign/slice/sign.slice.ts";
+import { clearContacts } from "../../store/contacts/slice/contacts.slice.ts";
 
 const Contacts = () => {
   const navigate = useNavigate();
   const [open, setOpen] = useState(false);
+  const dispatch = useDispatch();
 
   const contacts = useSelector((state: RootState) => state.contacts.contacts);
 
@@ -28,16 +32,45 @@ const Contacts = () => {
     setOpen(false);
   };
 
+  const handleLogout = () => {
+    dispatch(logout());
+    dispatch(clearContacts());
+  };
+
   return (
-    <>
+    <Stack>
+      <Button
+        variant="contained"
+        sx={{
+          position: "absolute",
+          zIndex: 2,
+          left: "15px",
+          bottom: "15px",
+        }}
+        onClick={handleLogout}
+      >
+        Выйти
+      </Button>
       <AddContact handleClose={handleClose} open={open} />
-      <Stack borderRight="2px solid #1976d2" width="250px" height="100vh">
+      <Stack width="250px" height="100%">
         <List
+          sx={{
+            height: "calc(100% - 60px)",
+            "::-webkit-scrollbar": {
+              width: "8px",
+              backgroundColor: "transparent",
+            },
+            "::-webkit-scrollbar-thumb": {
+              backgroundColor: "#1976d2",
+              borderRadius: "4px",
+            },
+            overflowY: "auto",
+          }}
           subheader={
             <ListSubheader
               component="div"
               sx={{
-                my: "10px",
+                py: "10px",
                 display: "flex",
                 justifyContent: "space-between",
                 alignItems: "center",
@@ -74,7 +107,7 @@ const Contacts = () => {
           )}
         </List>
       </Stack>
-    </>
+    </Stack>
   );
 };
 

@@ -1,9 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  isLogin: !!(sessionStorage.getItem("idInstance") && sessionStorage.getItem("apiTokenInstance")),
-  idInstance: sessionStorage.getItem("idInstance") || "",
-  apiTokenInstance: sessionStorage.getItem("apiTokenInstance") || "",
+  isLogin: !!(localStorage.getItem("idInstance") && localStorage.getItem("apiTokenInstance")),
+  idInstance: localStorage.getItem("idInstance") || "",
+  apiTokenInstance: localStorage.getItem("apiTokenInstance") || "",
 };
 
 const signSlice = createSlice({
@@ -15,15 +15,15 @@ const signSlice = createSlice({
       state.isLogin = true;
       state.idInstance = idInstance;
       state.apiTokenInstance = apiTokenInstance;
-      sessionStorage.setItem("idInstance", idInstance);
-      sessionStorage.setItem("apiTokenInstance", apiTokenInstance);
+      localStorage.setItem("idInstance", idInstance);
+      localStorage.setItem("apiTokenInstance", apiTokenInstance);
     },
     logout: (state) => {
       state.isLogin = false;
       state.idInstance = "";
       state.apiTokenInstance = "";
-      sessionStorage.removeItem("idInstance");
-      sessionStorage.removeItem("apiTokenInstance");
+      localStorage.removeItem("idInstance");
+      localStorage.removeItem("apiTokenInstance");
     },
   },
 });

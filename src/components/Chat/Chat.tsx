@@ -175,7 +175,7 @@ const Chat = () => {
     return (
       <Stack width="100%" height="100vh" justifyContent="center" alignItems="center">
         <Typography variant="h3" textAlign="center" m={2}>
-          Выберете чат
+          Выберите чат
         </Typography>
       </Stack>
     );
